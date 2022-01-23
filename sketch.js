@@ -65,6 +65,7 @@ function setup() {
   frameRate(16);
   targetWaterLine = width/2;
   currScroll = window.scrollY;
+  describe('Smooth, computer-generated blue ocean waves originating from the left side of the screen, on top of light brown sand. The water line follows the cursor or place last tapped on the screen. Two tiles, one that says ' + sentTo + ' and one that says ' + sentFrom + ', follow the cursor in alternating steps, as if the tiles are going on a walk together.');
   generateSand();
   // create first wave to calibrate water line
   generateWaterBorder();
