@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>long scrolls on the beach</title>
+    <link href="style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js" integrity="sha512-b/htz6gIyFi3dwSoZ0Uv3cuv3Ony7EeKkacgrcVg8CMzu90n777qveu0PBcbZUA7TzyENGtU+qZRuFAkfqgyoQ==" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <script src="sketch.js"></script>
+  </head>
+  <body>
+    <div id="to-from-measurement">
+      <span id="to"></span>
+      <span id="from"></span>
+    </div>
+    <div id="main-scroll-copy">
+      <p class="main-copy">hi <span id="to-in-copy"></span></p>
+      <p class="main-copy">this</p>
+      <p class="main-copy">may</p>
+      <p class="main-copy">not</p>
+      <p class="main-copy">be</p>
+      <p class="main-copy">a</p>
+      <p class="main-copy">long</p>
+      <p class="main-copy">walk</p>
+      <p class="main-copy">on</p>
+      <p class="main-copy">the</p>
+      <p class="main-copy">beach</p>
+      <p class="main-copy">nor</p>
+      <p class="main-copy">a</p>
+      <p class="main-copy">long</p>
+      <p class="main-copy">stroll</p>
+      <p class="main-copy">...</p>
+      <p class="main-copy">well</p>
+      <p class="main-copy">in</p>
+      <p class="main-copy">any</p>
+      <p class="main-copy">case</p>
+      <p class="main-copy">thank</p>
+      <p class="main-copy">you</p>
+      <p class="main-copy">for</p>
+      <p class="main-copy">joining</p>
+      <p class="main-copy">me</p>
+      <p class="main-copy">on</p>
+      <p class="main-copy">this</p>
+      <p class="main-copy">long</p>
+      <p class="main-copy">scroll</p>
+      <p class="main-copy">on</p>
+      <p class="main-copy">the</p>
+      <p class="main-copy">beach</p>
+      <p class="main-copy">:-)</p>
+    </div>
+    <div id="end-content">
+      <p>Hello<span id="to-in-message"></span>!</p>
+      <p id="custom-message">maybe you can even <a href="https://www.oceanorlaptopfan.com/" target="_blank">hear the ocean</a> from where you are!</p>
+      <p id="from-line">Yours, <span id="from-in-message">:)</span></p>
+    </div>
+    <div id="create-link-box">
+      <p id="cta"><span class="material-icons md-12-18">send</span> Send someone a long scroll on the beach</p>
+      <p>Fill this in:</p>
+      <div class="card-field">To: <input type="text" id="to-input"></div>
+      <div class="card-field">From: <input type="text" id="from-input"></div>
+      <div class="card-field">Message (optional): <input type="text" id="msg-input"></div>
+      <div id="link-container">
+        <p>Then copy and send this link:</p>
+        <input type="text" id="link-to-copy" name="link-to-copy" value="tiffanyq.github.io/beach" aria-label="Link to send to recipient" readonly="">
+      </div>
+    </div>
+    <div id="credit">by <a href="https://www.instagram.com/anotherbrowsertab/">anotherbrowsertab</a></div>
+  </body>
+</html>

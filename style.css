@@ -1,0 +1,94 @@
+canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+body {
+  height: 100vh;
+  margin: 0 auto;
+  font-family: 'Cardo', serif;
+  font-size: 18px;
+  max-width: 400px;
+  z-index: 1;
+}
+
+#to-from-measurement {
+  font-size: 24px;
+  font-family: Arial, sans-serif;
+}
+
+#main-scroll-copy p:first-of-type {
+  margin-top: 200px;
+}
+
+.main-copy {
+  padding: 200px 0;
+  font-size: 48px;
+  text-align: center;
+}
+
+#end-content {
+  display: flex;
+  flex-direction: column;
+  font-size: 28px;
+}
+#custom-message {
+  text-align: center;
+}
+
+/* Rule for sizing the icon. From http://google.github.io/material-design-icons */
+.material-icons.md-12-18, .material-icons.md-18 {
+  font-size: 24px;
+}
+
+#from-line {
+  text-align: right;
+}
+
+#create-link-box {
+  padding: 36px 48px;
+  font-family: 'Helvetica', sans-serif;
+  margin: 0 auto;
+  color: white;
+  background-color: #181e31;
+  width: 300px;
+  border: 1px solid #080c16;
+  margin-top: 60px;
+  font-size: 16px;
+}
+
+#cta {
+  font-size: 28px;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 48px;
+}
+
+.card-field {
+  margin-top: 12px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.card-field input {
+  width: 100px;
+  margin-left: 8px;
+}
+
+#link-container {
+  margin-top: 36px;
+}
+
+#link-to-copy {
+  width: 280px;
+}
+
+#credit {
+  text-align: center;
+  padding-top: 64px;
+  padding-bottom: 32px;
+  font-size: 16px;
+  font-family: 'Helvetica', sans-serif;
+}
