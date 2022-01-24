@@ -10,7 +10,7 @@ body {
   margin: 0 auto;
   font-family: 'Cardo', serif;
   font-size: 18px;
-  max-width: 400px;
+  max-width: 350px;
   z-index: 1;
 }
 
@@ -48,12 +48,12 @@ body {
 }
 
 #create-link-box {
-  padding: 36px 48px;
+  padding: 36px 36px;
   font-family: 'Helvetica', sans-serif;
   margin: 0 auto;
   color: white;
   background-color: #181e31;
-  width: 300px;
+  width: 270px;
   border: 1px solid #080c16;
   margin-top: 60px;
   font-size: 16px;
