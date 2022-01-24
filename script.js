@@ -107,6 +107,26 @@ function updateURLToCopy() {
     tempURL = tempURL + "&m=" + msgForURL;
   }
   urlToCopy.value = tempURL;
+  revertCopyButton();
+}
+
+function copyToClipboard() {
+  const urlToCopy = document.getElementById("link-to-copy");
+  urlToCopy.select();
+  urlToCopy.setSelectionRange(0, 99999); // for mobile
+  document.execCommand('copy');
+  // show success message
+  updateCopyButtonToCopied();
+}
+
+function updateCopyButtonToCopied() {
+  const copyButton = document.getElementById("copy-button");
+  copyButton.innerText = "Copied!";
+}
+
+function revertCopyButton() {
+  const copyButton = document.getElementById("copy-button");
+  copyButton.innerText = "Copy";
 }
 
 window.onload = function() {
@@ -116,6 +136,8 @@ window.onload = function() {
   toInput.addEventListener("input", updateTo);
   fromInput.addEventListener("input", updateFrom);
   msgInput.addEventListener("input", updateMessage);
+  const copyButton = document.getElementById("copy-button");
+  copyButton.addEventListener("click", copyToClipboard);
   // decode message if applicable
   const queryString = window.location.search;
   const param = new URLSearchParams(queryString);

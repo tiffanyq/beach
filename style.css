@@ -81,8 +81,12 @@ body {
   margin-top: 36px;
 }
 
+#copy-bar {
+  display: inline-flex;
+}
+
 #link-to-copy {
-  width: 280px;
+  width: 220px;
 }
 
 #credit {
