@@ -9,13 +9,16 @@ const YSCALE = 0.6;
 const XSTEP_SIZE = 20; // reduce computation
 const ZSTEP_SIZE = 0.003;
 const YHEIGHT_MULTIPLIER = 0.5;
-const WATER_LINE_STEP_SIZE = 3;
+const WATER_LINE_STEP_SIZE = 4;
 const WATER_LINE_PROX_THRESHOLD = 16;
+const FRAME_RATE = 16;
+const MAX_SECTIONS = 339;
 
 let initWaterLine = false;
 let reachedTargetWaterLine = false;
 
 let numWaterLineSteps = 1;
+let currWaterDirection = 1; // 1 and -1 represent +x and -x
 let pastOffset = 0;
 let tempOffset = 0;
 let zStep = 0;
@@ -25,9 +28,7 @@ let targetWaterLine;
 let waterLine;
 let grain;
 let currScroll;
-
-// for you/me tiles
-let mouseInitiated = false;
+let currSection = 0; // for you me tiles
 
 // todo later
 class WaterLayer {
@@ -62,10 +63,10 @@ function setup() {
   const cnv = createCanvas(window.innerWidth, window.innerHeight);
   cnv.style('display', 'block');
   cnv.style('position', 'fixed');
-  frameRate(16);
+  frameRate(FRAME_RATE);
   targetWaterLine = width/2;
-  currScroll = window.scrollY;
-  describe('Smooth, computer-generated blue ocean waves originating from the left side of the screen, on top of light brown sand. The water line follows the cursor or place last tapped on the screen. Two tiles, one that says ' + sentTo + ' and one that says ' + sentFrom + ', follow the cursor in alternating steps, as if the tiles are going on a walk together.');
+  currScroll = window.pageYOffset;
+  describe('Smooth, computer-generated blue ocean waves originating from the left side of the screen, on top of sand. The water line follows the cursor or place last tapped on the screen. Two tiles, one that says ' + sentTo + ' and one that says ' + sentFrom + ', follow the cursor in alternating steps, as if the tiles are going on a walk together.');
   generateSand();
   // create first wave to calibrate water line
   generateWaterBorder();
@@ -88,12 +89,10 @@ function windowResized() {
 
 function mouseMoved() {
   setNewTargetWaterLine();
-  mouseInitiated = true;
 }
 
 function touchStarted() {
   setNewTargetWaterLine();
-  mouseInitiated = true;
 }
 
 function setNewTargetWaterLine() {
@@ -102,14 +101,15 @@ function setNewTargetWaterLine() {
   pastOffset = pastOffset + tempOffset;
   tempOffset = 0;
   targetWaterLine = mouseX;
+  currWaterDirection = targetWaterLine < waterLine ? -1 : 1;
 }
 
 function moveYouMe() {
-  let xrel;
+  let xrel = width/2;
   let yTo;
   let yFrom;
   
-  let currSection = int(mouseY / 50);
+  computeCurrSection();
 
   if (currSection % 2 === 0) {
     yTo = 50 * currSection;
@@ -119,13 +119,8 @@ function moveYouMe() {
     yFrom = 50 * currSection;
   }
 
-  if (!mouseInitiated) {
-    xrel = width/2;
-    yTo = 150;
-    yFrom = 200;
-  } else {
-    xrel = mouseX;
-  }
+  yTo = yTo - window.pageYOffset;
+  yFrom = yFrom - window.pageYOffset;
 
   fill(49,65,112); // you
   rect(xrel - toWidth, yTo, toWidth + 30, 40);
@@ -140,8 +135,14 @@ function moveYouMe() {
   text(sentFrom, xrel + 15, yFrom + 27);
 }
 
+function computeCurrSection() {
+  if (frameCount % (FRAME_RATE/4) === 0) {
+    currSection = min(MAX_SECTIONS, currSection+1);
+  }
+}
+
 function draw() {
-  currScroll = window.scrollY;
+  currScroll = window.pageYOffset;
   tint(255,255);
   generateSand();
   for (let i = 0; i < waterLayers.length; i++) {
@@ -193,7 +194,7 @@ function generateWaterBorder() {
 
 function updateWaterLineOffset() {
   // check if target waterline is in reach
-  tempOffset = targetWaterLine < waterLine ? -1 * WATER_LINE_STEP_SIZE * numWaterLineSteps : WATER_LINE_STEP_SIZE * numWaterLineSteps;
+  tempOffset = WATER_LINE_STEP_SIZE * numWaterLineSteps * currWaterDirection;
   numWaterLineSteps = reachedTargetWaterLine ? numWaterLineSteps : numWaterLineSteps + 1;
   if (!reachedTargetWaterLine) {
     reachedTargetWaterLine = abs(targetWaterLine - waterLine) < WATER_LINE_PROX_THRESHOLD ? true : false;

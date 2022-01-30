@@ -1,3 +1,6 @@
+const END_FADE_THRESHOLD = 1000.0;
+const START_FADE_THRESHOLD = 400.0;
+
 let toForURL="";
 let fromForURL="";
 let msgForURL="";
@@ -129,6 +132,23 @@ function revertCopyButton() {
   copyButton.innerText = "Copy";
 }
 
+function fadeOutScrollIndicator() {
+	const scrollIndicator = document.getElementById('scroll-indicator');
+  const st = window.pageYOffset;
+  if (window.pageYOffset > END_FADE_THRESHOLD) {
+    scrollIndicator.style.display = "none";
+  }
+  else {
+    scrollIndicator.style.display = "block";
+    if (st > START_FADE_THRESHOLD) {
+      scrollIndicator.style.opacity =
+      Math.max(0, 1 - (st-START_FADE_THRESHOLD)/(END_FADE_THRESHOLD-START_FADE_THRESHOLD));
+    } else {
+      scrollIndicator.style.opacity = 1;
+    }
+  }
+}
+
 window.onload = function() {
   const toInput= document.getElementById("to-input");
   const fromInput = document.getElementById("from-input");
@@ -163,13 +183,20 @@ window.onload = function() {
     const customMsg = document.getElementById("custom-message");
     customMsg.innerText = decodedMsg;
   }
-  // compute widths
+
+  // compute widths and add emojis
+  sentTo = "😊 " + sentTo;
+  sentFrom = "😁 " + sentFrom;
   let toElement = document.getElementById("to");
-  toElement.innerText = sentTo;;
+  toElement.innerText = sentTo;
   toWidth = toElement.offsetWidth;
   let fromElement = document.getElementById("from");
   fromElement.innerText = sentFrom;
   fromWidth = fromElement.offsetWidth;
   let bbox = this.document.getElementById("to-from-measurement");
   bbox.style.display = "none";
+
+  // fade out the scroll indicator
+  window.addEventListener('scroll', fadeOutScrollIndicator, false);
+  fadeOutScrollIndicator();
 }
