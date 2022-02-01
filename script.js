@@ -11,7 +11,7 @@ let sentFrom = "me";
 let toWidth;
 let fromWidth;
 
-const BASE_URL = "tiffanyq.github.io/beach?"
+const BASE_URL = "https://tiffanyq.github.io/beach?"
 const ALPHABET = {
   "a": "n",
   "b": "o",
@@ -81,19 +81,28 @@ function switchCodeAndMessage(content) {
 
 function updateTo(e) {
   let to = e.target.value;
-  toForURL = encodeURIComponent(switchCodeAndMessage(to)).replace(/\(/g, "%28").replace(/\)/g, "%29");
+  toForURL = encodeURIComponent(switchCodeAndMessage(to))
+    .replace(/\(/g, "%28").replace(/\)/g, "%29")
+    .replace(/\!/g, "%21").replace(/\'/g, "%27")
+    .replace(/\./g, "%2E").replace(/\*/g, "%2A");
   updateURLToCopy();
 }
 
 function updateFrom(e) {
   const from = e.target.value;
-  fromForURL = encodeURIComponent(switchCodeAndMessage(from)).replace(/\(/g, "%28").replace(/\)/g, "%29");
+  fromForURL = encodeURIComponent(switchCodeAndMessage(from))
+    .replace(/\(/g, "%28").replace(/\)/g, "%29")
+    .replace(/\!/g, "%21").replace(/\'/g, "%27")
+    .replace(/\./g, "%2E").replace(/\*/g, "%2A");
   updateURLToCopy();
 }
 
 function updateMessage(e) {
   const msg = e.target.value;
-  msgForURL = encodeURIComponent(switchCodeAndMessage(msg)).replace(/\(/g, "%28").replace(/\)/g, "%29");
+  msgForURL = encodeURIComponent(switchCodeAndMessage(msg))
+    .replace(/\(/g, "%28").replace(/\)/g, "%29")
+    .replace(/\!/g, "%21").replace(/\'/g, "%27")
+    .replace(/\./g, "%2E").replace(/\*/g, "%2A");
   updateURLToCopy();
 }
 

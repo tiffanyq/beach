@@ -17,6 +17,7 @@ body {
 #to-from-measurement {
   font-size: 24px;
   font-family: Arial, sans-serif;
+  white-space: nowrap;
 }
 
 #main-scroll-copy p:first-of-type {
@@ -99,7 +100,7 @@ body {
 }
 
 #link-to-copy {
-  width: 180px;
+  width: 200px;
 }
 
 #credit {
