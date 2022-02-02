@@ -10,6 +10,8 @@ let sentTo = "you";
 let sentFrom = "me";
 let toWidth;
 let fromWidth;
+let toHeight;
+let fromHeight;
 
 const BASE_URL = "https://tiffanyq.github.io/beach?"
 const ALPHABET = {
@@ -193,15 +195,17 @@ window.onload = function() {
     customMsg.innerText = decodedMsg;
   }
 
-  // compute widths and add emojis
+  // compute widths and heights and add emojis
   sentTo = "😊 " + sentTo;
   sentFrom = "😁 " + sentFrom;
   let toElement = document.getElementById("to");
   toElement.innerText = sentTo;
-  toWidth = toElement.offsetWidth;
+  toWidth = toElement.offsetWidth + 20;
+  toHeight = toElement.offsetHeight + 20;
   let fromElement = document.getElementById("from");
   fromElement.innerText = sentFrom;
-  fromWidth = fromElement.offsetWidth;
+  fromWidth = fromElement.offsetWidth + 20;
+  fromHeight = fromElement.offsetHeight + 20;
   let bbox = this.document.getElementById("to-from-measurement");
   bbox.style.display = "none";
 

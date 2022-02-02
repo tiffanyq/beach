@@ -28,6 +28,7 @@ let targetWaterLine;
 let waterLine;
 let grain;
 let currScroll;
+let walkStepSize;
 let currSection = 0; // for you me tiles
 
 // todo later
@@ -80,7 +81,9 @@ function setup() {
     waterLineYValues.push(random(-1*YSCALE*0.8,YSCALE*0.8));
   }
   // init youMe labels
-  textSize(24);
+  textSize(18);
+  textWrap(CHAR);
+  walkStepSize = max(toHeight, fromHeight) + 12;
 }
 
 function windowResized() {
@@ -112,31 +115,31 @@ function moveYouMe() {
   computeCurrSection();
 
   if (currSection % 2 === 0) {
-    yTo = 50 * currSection;
-    yFrom = 50 * currSection + 50;
+    yTo = walkStepSize * currSection;
+    yFrom = walkStepSize * currSection + walkStepSize;
   } else {
-    yTo = 50* currSection + 50;
-    yFrom = 50 * currSection;
+    yTo = walkStepSize* currSection + walkStepSize;
+    yFrom = walkStepSize * currSection;
   }
 
   yTo = yTo - window.pageYOffset;
   yFrom = yFrom - window.pageYOffset;
 
   fill(49,65,112); // you
-  rect(xrel - toWidth, yTo, toWidth + 30, 40);
+  rect(xrel - toWidth, yTo+14, toWidth + 25, toHeight-4);
   fill(166,86,131); // me
-  rect(xrel, yFrom, fromWidth + 30, 40);
+  rect(xrel, yFrom+14, fromWidth + 25, fromHeight-4);
   fill(255); // text
   strokeWeight(0);
   const c = color(255);
   c.setAlpha(255);
   fill(c);
-  text(sentTo, xrel - toWidth + 15, yTo + 27);
-  text(sentFrom, xrel + 15, yFrom + 27);
+  text(sentTo, xrel - toWidth + 15, yTo + 27, toWidth, toHeight);
+  text(sentFrom, xrel + 15, yFrom + 27, fromWidth, fromHeight);
 }
 
 function computeCurrSection() {
-  if (frameCount % (FRAME_RATE/4) === 0) {
+  if (frameCount % 8 === 0) {
     currSection = min(MAX_SECTIONS, currSection+1);
   }
 }

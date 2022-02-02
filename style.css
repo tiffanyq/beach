@@ -15,9 +15,16 @@ body {
 }
 
 #to-from-measurement {
-  font-size: 24px;
+  font-size: 18px;
   font-family: Arial, sans-serif;
-  white-space: nowrap;
+}
+
+#to, #from {
+  max-width: 200px;
+  display: inline-block;
+  word-break: break-all;
+  word-wrap: break-all;
+  overflow-wrap: anywhere;
 }
 
 #main-scroll-copy p:first-of-type {
