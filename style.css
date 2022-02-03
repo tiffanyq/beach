@@ -20,7 +20,7 @@ body {
 }
 
 #to, #from {
-  max-width: 200px;
+  max-width: 160px;
   display: inline-block;
   word-break: break-all;
   word-wrap: break-all;
