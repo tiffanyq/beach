@@ -12,7 +12,7 @@ const YHEIGHT_MULTIPLIER = 0.5;
 const WATER_LINE_STEP_SIZE = 4;
 const WATER_LINE_PROX_THRESHOLD = 16;
 const FRAME_RATE = 16;
-const MAX_SECTIONS = 339;
+const MAX_SECTIONS = 110; // walk off screen
 
 let initWaterLine = false;
 let reachedTargetWaterLine = false;
@@ -67,7 +67,7 @@ function setup() {
   frameRate(FRAME_RATE);
   targetWaterLine = width/2;
   currScroll = window.pageYOffset;
-  describe('Smooth, computer-generated blue ocean waves originating from the left side of the screen, on top of sand. The water line follows the cursor or place last tapped on the screen. Two tiles, one that says ' + sentTo + ' and one that says ' + sentFrom + ', follow the cursor in alternating steps, as if the tiles are going on a walk together.');
+  describe('Smooth, computer-generated blue ocean waves originating from the left side of the screen, on top of sand. The water line follows the cursor or place last tapped on the screen. Two tiles, one that says ' + sentTo + ' and one that says ' + sentFrom + ', take alternating vertical steps down the page until they walk past the bottom of the page.');
   generateSand();
   // create first wave to calibrate water line
   generateWaterBorder();
@@ -83,7 +83,7 @@ function setup() {
   // init youMe labels
   textSize(18);
   textWrap(CHAR);
-  walkStepSize = max(toHeight, fromHeight) + 12;
+  walkStepSize = max(toHeight, fromHeight) + 144;
 }
 
 function windowResized() {
