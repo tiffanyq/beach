@@ -4,6 +4,7 @@ const START_FADE_THRESHOLD = 400.0;
 let toForURL="";
 let fromForURL="";
 let msgForURL="";
+let vanURL = false;
 
 // for moving labels for walk down the beach
 let sentTo = "you";
@@ -12,6 +13,7 @@ let toWidth;
 let fromWidth;
 let toHeight;
 let fromHeight;
+let isVanEditionInit;
 
 const BASE_URL = "https://tiffanyq.github.io/beach?"
 const ALPHABET = {
@@ -108,6 +110,11 @@ function updateMessage(e) {
   updateURLToCopy();
 }
 
+function updateVanURL(e) {
+  vanURL = e.target.checked;
+  updateURLToCopy();
+}
+
 function updateURLToCopy() {
   const urlToCopy = document.getElementById("link-to-copy");
   let tempURL = BASE_URL;
@@ -119,6 +126,9 @@ function updateURLToCopy() {
   }
   if (msgForURL) {
     tempURL = tempURL + "&m=" + msgForURL;
+  }
+  if (vanURL) {
+    tempURL = tempURL + "&v=t";
   }
   urlToCopy.value = tempURL;
   revertCopyButton();
@@ -164,9 +174,11 @@ window.onload = function() {
   const toInput= document.getElementById("to-input");
   const fromInput = document.getElementById("from-input");
   const msgInput = document.getElementById("msg-input");
+  const vanInput = document.getElementById("vancouver");
   toInput.addEventListener("input", updateTo);
   fromInput.addEventListener("input", updateFrom);
   msgInput.addEventListener("input", updateMessage);
+  vanInput.addEventListener("input", updateVanURL);
   const copyButton = document.getElementById("copy-button");
   copyButton.addEventListener("click", copyToClipboard);
   // decode message if applicable
@@ -175,6 +187,7 @@ window.onload = function() {
   const to = param.get('t');
   const from = param.get('f');
   const message = param.get('m');
+  isVanEditionInit = param.get('v');
   if (to) {
     let decodedTo = switchCodeAndMessage(decodeURIComponent(to));
     const customTo = document.getElementById("to-in-message");
@@ -193,6 +206,10 @@ window.onload = function() {
     let decodedMsg = switchCodeAndMessage(decodeURIComponent(message));
     const customMsg = document.getElementById("custom-message");
     customMsg.innerText = decodedMsg;
+  }
+  if (isVanEditionInit) {
+    const vanEdition = document.getElementById("vancouver-edition");
+    vanEdition.style.display = "block";
   }
 
   // compute widths and heights and add emojis

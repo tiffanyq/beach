@@ -80,6 +80,21 @@ body {
   font-size: 16px;
 }
 
+/* van edition */
+#vancouver-edition {
+  display: none;
+}
+
+#vancouver {
+  width: 16px;
+  height: 16px;
+}
+
+#barge {
+  display: flex;
+  justify-content: center;
+}
+
 #cta {
   font-size: 28px;
   text-transform: uppercase;

@@ -12,7 +12,7 @@ const YHEIGHT_MULTIPLIER = 0.5;
 const WATER_LINE_STEP_SIZE = 4;
 const WATER_LINE_PROX_THRESHOLD = 16;
 const FRAME_RATE = 16;
-const MAX_SECTIONS = 110; // walk off screen
+const MAX_SECTIONS = 160; // walk off screen
 
 let initWaterLine = false;
 let reachedTargetWaterLine = false;
@@ -67,7 +67,14 @@ function setup() {
   frameRate(FRAME_RATE);
   targetWaterLine = width/2;
   currScroll = window.pageYOffset;
-  describe('Smooth, computer-generated blue ocean waves originating from the left side of the screen, on top of sand. The water line follows the cursor or place last tapped on the screen. Two tiles, one that says ' + sentTo + ' and one that says ' + sentFrom + ', take alternating vertical steps down the page until they walk past the bottom of the page.');
+
+  if (isVanEditionInit) {
+    describe('Smooth, computer-generated pastel blue ocean waves originating from the left side of the screen, on top of sand. The water line follows the cursor or place last tapped on the screen. Two tiles, one that says ' + sentTo + ' and one that says ' + sentFrom + ', take alternating vertical steps down the page until they walk past the bottom of the page. Just before the bottom of the page is an image of a red and black barge that washed ashore onto a bed of rocks in Vancouver, British Columbia in November 2021.');
+
+  } else {
+    describe('Smooth, computer-generated pastel blue ocean waves originating from the left side of the screen, on top of sand. The water line follows the cursor or place last tapped on the screen. Two tiles, one that says ' + sentTo + ' and one that says ' + sentFrom + ', take alternating vertical steps down the page until they walk past the bottom of the page.');
+  }
+
   generateSand();
   // create first wave to calibrate water line
   generateWaterBorder();
